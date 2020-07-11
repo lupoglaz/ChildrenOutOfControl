@@ -7,6 +7,8 @@ var velocity = Vector2.ZERO
 
 onready var animationPlayer = $AnimationPlayer
 onready var barkTimer = $BarkTimer
+onready var sprite = $Sprite
+onready var barkArea = $BarkArea
 var canBark = true
 
 enum {
@@ -32,11 +34,13 @@ func move_state(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION*delta)
 		
 	if Input.is_action_just_pressed("ui_bark") and canBark:	
+		barkArea.direction = global_position
 		barkTimer.start()
 		canBark = false
 		state = BARK
 	
 	velocity = move_and_slide(velocity)
+	sprite.flip_h = velocity.x > 0
 	
 func bark_state(delta):
 	animationPlayer.play("Bark")
