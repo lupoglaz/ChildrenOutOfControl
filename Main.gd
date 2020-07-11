@@ -4,7 +4,7 @@ onready var interface = $UI
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	interface.showMenu()
 
 func _on_Child_child_dead():
 	interface.gameover()

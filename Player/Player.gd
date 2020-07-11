@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 export var ACCELERATION = 500
-export var MAX_SPEED = 80
-export var FRICTION = 500
+export var MAX_SPEED = 160
+export var FRICTION = 400
 var velocity = Vector2.ZERO
 
 onready var animationPlayer = $AnimationPlayer
@@ -11,6 +11,7 @@ onready var sprite = $Sprite
 onready var barkArea = $BarkArea
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var particles = $Particles2D
 var canBark = true
 
 enum {
@@ -20,7 +21,7 @@ enum {
 var state = MOVE
 
 func _ready():
-	pass
+	animationPlayer.stop()
 
 func move_state(delta):
 	var input_vec = Vector2.ZERO
@@ -37,6 +38,11 @@ func move_state(delta):
 	else:
 		animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION*delta)
+		if velocity.length()>1:
+			#particles.direction = -velocity
+			particles.emitting = true
+		else:
+			particles.emitting = false
 		
 	if Input.is_action_just_pressed("ui_bark") and canBark:
 		barkArea.direction = global_position
