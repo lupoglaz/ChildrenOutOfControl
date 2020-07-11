@@ -40,7 +40,7 @@ func move_state(delta):
 		
 	if Input.is_action_just_pressed("ui_bark") and canBark:
 		barkArea.direction = global_position
-		barkTimer.start()
+		barkTimer.start(1.0)
 		canBark = false
 		state = BARK
 	
@@ -53,6 +53,8 @@ func bark_state(delta):
 	
 func bark_animation_finished():
 	state = MOVE
+	animationPlayer.stop()
+	animationState.travel("Bark")
 	
 func _process(delta):
 	match state:
