@@ -73,6 +73,7 @@ ui_bark={
 2d_physics/layer_3="Children"
 2d_physics/layer_4="Bark"
 2d_physics/layer_5="Hazzard"
+2d_physics/layer_6="Goal"
 
 [rendering]
 

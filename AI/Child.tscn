@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://AI/child.png" type="Texture" id=1]
 [ext_resource path="res://AI/Child.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 radius = 13.0
 
 [sub_resource type="CircleShape2D" id=3]
+
+[sub_resource type="CircleShape2D" id=4]
 
 [node name="Child" type="KinematicBody2D"]
 collision_layer = 31
@@ -26,8 +28,8 @@ shape = SubResource( 1 )
 wait_time = 0.5
 
 [node name="RandomStateBox" type="Area2D" parent="."]
-collision_layer = 23
-collision_mask = 23
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RandomStateBox"]
 shape = SubResource( 2 )
@@ -38,6 +40,22 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FrightenStateBox"]
 shape = SubResource( 3 )
+
+[node name="HazardStateBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2147483664
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardStateBox"]
+shape = SubResource( 4 )
+
+[node name="GoalStateBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2147483680
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalStateBox"]
+shape = SubResource( 4 )
 [connection signal="timeout" from="StateTimer" to="." method="_on_StateTimer_timeout"]
 [connection signal="body_entered" from="RandomStateBox" to="." method="_on_Area2D_body_entered"]
 [connection signal="area_entered" from="FrightenStateBox" to="." method="_on_FrightenStateBox_area_entered"]
+[connection signal="area_entered" from="HazardStateBox" to="." method="_on_HazardStateBox_area_entered"]
+[connection signal="area_entered" from="GoalStateBox" to="." method="_on_GoalStateBox_area_entered"]

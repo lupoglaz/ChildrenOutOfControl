@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+signal child_dead
+signal child_saved
+
 export var ACCELERATION = 300
 export var MAX_SPEED = 50
 export var FRICTION = 200
@@ -81,3 +84,11 @@ func _on_FrightenStateBox_area_entered(area):
 	target_position = global_position + flee_direction.normalized() * 200
 	stateTimer.start(rand_range(1,3))
 	print("Frightened ", target_position)
+
+
+func _on_HazardStateBox_area_entered(area):
+	emit_signal("child_dead")
+
+
+func _on_GoalStateBox_area_entered(area):
+	emit_signal("child_saved")
