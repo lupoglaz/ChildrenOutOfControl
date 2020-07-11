@@ -9,6 +9,8 @@ onready var animationPlayer = $AnimationPlayer
 onready var barkTimer = $BarkTimer
 onready var sprite = $Sprite
 onready var barkArea = $BarkArea
+onready var animationTree = $AnimationTree
+onready var animationState = animationTree.get("parameters/playback")
 var canBark = true
 
 enum {
@@ -28,12 +30,15 @@ func move_state(delta):
 	
 	if input_vec != Vector2.ZERO:
 		velocity = velocity.move_toward(input_vec*MAX_SPEED, ACCELERATION*delta)
-		animationPlayer.play("Move")
+		animationTree.set("parameters/Idle/blend_position", input_vec)
+		animationTree.set("parameters/Run/blend_position", input_vec)
+		animationTree.set("parameters/Bark/blend_position", input_vec)
+		animationState.travel("Run")
 	else:
-		animationPlayer.play("Idle")
+		animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION*delta)
 		
-	if Input.is_action_just_pressed("ui_bark") and canBark:	
+	if Input.is_action_just_pressed("ui_bark") and canBark:
 		barkArea.direction = global_position
 		barkTimer.start()
 		canBark = false
@@ -44,6 +49,7 @@ func move_state(delta):
 	
 func bark_state(delta):
 	animationPlayer.play("Bark")
+	animationState.travel("Bark")
 	
 func bark_animation_finished():
 	state = MOVE
