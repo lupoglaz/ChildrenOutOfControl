@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/LargeShadow.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Player/Bark.shader" type="Shader" id=5]
 [ext_resource path="res://Player/BarkWave.png" type="Texture" id=6]
 [ext_resource path="res://Player/particle.png" type="Texture" id=7]
+[ext_resource path="res://Player/SFX_Bark.wav" type="AudioStream" id=8]
 
 [sub_resource type="Curve" id=40]
 max_value = 3.0
@@ -109,9 +110,23 @@ tracks/6/keys = {
 "update": 0,
 "values": [ 0.0, 0.03, 0.0 ]
 }
+tracks/7/type = "audio"
+tracks/7/path = NodePath("AudioStreamPlayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 6.5
+radius = 6.43441
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "BarkLeft"
