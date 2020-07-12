@@ -24,6 +24,10 @@ func showMenu():
 		$Menu/MarginContainer2/VBoxContainer/Button2.visible = true
 	if Global.unlocked >= 3:
 		$Menu/MarginContainer2/VBoxContainer/Button3.visible = true
+	if Global.unlocked >= 4:
+		$Menu/MarginContainer2/VBoxContainer/Button4.visible = true
+	if Global.unlocked >= 5:
+		$Menu/MarginContainer2/VBoxContainer/Button5.visible = true
 
 func hideMenu():
 	menu.visible = false
@@ -98,4 +102,14 @@ func _on_Button2_pressed():
 
 func _on_Button3_pressed():
 	Global.current_stage = 2
+	Global.go_next_stage()
+
+
+func _on_Button4_pressed():
+	Global.current_stage = 3
+	Global.go_next_stage()
+
+
+func _on_Button5_pressed():
+	Global.current_stage = 4
 	Global.go_next_stage()

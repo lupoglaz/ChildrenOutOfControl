@@ -90,6 +90,7 @@ __meta__ = {
 }
 
 [node name="Menu" type="Control" parent="."]
+visible = false
 anchor_bottom = 0.029
 margin_right = 641.0
 margin_bottom = 465.08
@@ -209,6 +210,23 @@ custom_fonts/font = SubResource( 3 )
 text = "Violent kid"
 flat = true
 
+[node name="Button4" type="Button" parent="Menu/MarginContainer2/VBoxContainer"]
+margin_top = 28.0
+margin_right = 95.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 3 )
+text = "Violence starts"
+flat = true
+
+[node name="Button5" type="Button" parent="Menu/MarginContainer2/VBoxContainer"]
+visible = false
+margin_top = 28.0
+margin_right = 95.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 3 )
+text = "Violent kid"
+flat = true
+
 [node name="Clock" type="CenterContainer" parent="."]
 visible = false
 margin_right = 644.0
@@ -240,4 +258,6 @@ margin_bottom = 32.0
 [connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/Button4" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/Button5" to="." method="_on_Button5_pressed"]
 [connection signal="timeout" from="Clock/Timer" to="." method="_on_Timer_timeout"]

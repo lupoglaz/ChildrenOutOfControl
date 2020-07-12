@@ -2,7 +2,7 @@ extends Node
 
 var current_stage = 0
 var unlocked = 0
-var max_levels = 3
+var max_levels = 5
 var timeout_time = 3.0
 
 func go_next_stage():
