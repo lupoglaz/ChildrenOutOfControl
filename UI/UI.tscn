@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://UI/Font1.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/AustieBostKittenKlub.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeOut"
@@ -32,6 +33,13 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
+font_data = ExtResource( 3 )
+
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 1 )
 
@@ -59,9 +67,9 @@ __meta__ = {
 
 [node name="Success" type="Label" parent="CenterContainer"]
 visible = false
-margin_left = 241.0
+margin_left = 200.0
 margin_top = 215.0
-margin_right = 395.0
+margin_right = 436.0
 margin_bottom = 262.0
 custom_fonts/font = ExtResource( 2 )
 text = "GOOD DOGGO"
@@ -71,9 +79,9 @@ __meta__ = {
 
 [node name="GameOver" type="Label" parent="CenterContainer"]
 visible = false
-margin_left = 212.0
+margin_left = 211.0
 margin_top = 215.0
-margin_right = 425.0
+margin_right = 426.0
 margin_bottom = 262.0
 custom_fonts/font = ExtResource( 2 )
 text = "BAD DOGGO"
@@ -82,7 +90,6 @@ __meta__ = {
 }
 
 [node name="Menu" type="Control" parent="."]
-visible = false
 anchor_bottom = 0.029
 margin_right = 641.0
 margin_bottom = 465.08
@@ -156,6 +163,52 @@ text = "Exit"
 flat = true
 align = 0
 
+[node name="MarginContainer2" type="MarginContainer" parent="Menu"]
+margin_left = 481.0
+margin_top = 159.0
+margin_right = 568.0
+margin_bottom = 350.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer2"]
+margin_right = 95.0
+margin_bottom = 191.0
+
+[node name="Label5" type="Label" parent="Menu/MarginContainer2/VBoxContainer"]
+margin_right = 95.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 2 )
+text = "Levels:"
+
+[node name="Button" type="Button" parent="Menu/MarginContainer2/VBoxContainer"]
+visible = false
+margin_top = 28.0
+margin_right = 95.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 3 )
+text = "Level1"
+flat = true
+
+[node name="Button2" type="Button" parent="Menu/MarginContainer2/VBoxContainer"]
+visible = false
+margin_top = 28.0
+margin_right = 95.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 3 )
+text = "Level1"
+flat = true
+
+[node name="Button3" type="Button" parent="Menu/MarginContainer2/VBoxContainer"]
+visible = false
+margin_top = 28.0
+margin_right = 95.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 3 )
+text = "Level1"
+flat = true
+
 [node name="Clock" type="CenterContainer" parent="."]
 visible = false
 margin_right = 644.0
@@ -184,4 +237,7 @@ margin_bottom = 32.0
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="gui_input" from="Menu/MarginContainer/VBoxContainer/Exit" to="." method="_on_Exit_gui_input"]
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/Button3" to="." method="_on_Button3_pressed"]
 [connection signal="timeout" from="Clock/Timer" to="." method="_on_Timer_timeout"]

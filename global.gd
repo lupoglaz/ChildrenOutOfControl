@@ -1,11 +1,13 @@
 extends Node
 
-var current_stage = 1
-var max_levels = 2
+var current_stage = 0
+var unlocked = 0
+var max_levels = 3
 var timeout_time = 3.0
 
 func go_next_stage():
 	current_stage += 1
+	unlocked += 1
 	var level_path = "res://Levels/Level"+str(current_stage)+".tscn"
 	print("Next stage ", current_stage)
 	if current_stage <= max_levels:
@@ -20,7 +22,8 @@ func go_menu():
 func save_progress():
 	# Construct a dictionary with whatever data you want
 	var data = {
-		"stage" : current_stage
+		"stage" : current_stage,
+		"unlocked" : unlocked
 	}
 
 	# Open a file
@@ -48,4 +51,8 @@ func load_progress():
 	var data = {}
 	data = parse_json(file.get_as_text())
 	current_stage = data["stage"]
+	if unlocked in data.keys():
+		unlocked = data["unlocked"]
+	else:
+		unlocked = current_stage
 	

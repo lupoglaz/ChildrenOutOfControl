@@ -482,6 +482,7 @@ hframes = 31
 position = Vector2( 3.96851, -17.0646 )
 texture = ExtResource( 4 )
 hframes = 27
+frame = 12
 
 [node name="SpriteNormal" type="Sprite" parent="."]
 visible = false

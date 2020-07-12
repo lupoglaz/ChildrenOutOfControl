@@ -18,6 +18,12 @@ func showMenu():
 	gameOver.visible = false
 	successLabel.visible = false
 	menu.visible = true
+	if Global.unlocked >= 1:
+		$Menu/MarginContainer2/VBoxContainer/Button.visible = true
+	if Global.unlocked >= 2:
+		$Menu/MarginContainer2/VBoxContainer/Button2.visible = true
+	if Global.unlocked >= 3:
+		$Menu/MarginContainer2/VBoxContainer/Button3.visible = true
 
 func hideMenu():
 	menu.visible = false
@@ -32,6 +38,7 @@ func _ready():
 		menu_start_button.text = "Continue"
 	else:
 		menu_start_button.text = "Start"
+	
 		
 	gameOver.visible = false
 	successLabel.visible = false
@@ -77,3 +84,18 @@ func stopClock():
 
 func _on_Timer_timeout():
 	emit_signal("timeout_signal")
+
+
+func _on_Button_pressed():
+	Global.current_stage = 0
+	Global.go_next_stage()
+
+
+func _on_Button2_pressed():
+	Global.current_stage = 1
+	Global.go_next_stage()
+
+
+func _on_Button3_pressed():
+	Global.current_stage = 2
+	Global.go_next_stage()
