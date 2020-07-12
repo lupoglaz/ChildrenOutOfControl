@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://World/Hazard.tscn" type="PackedScene" id=6]
 [ext_resource path="res://World/Goal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Levels/Level1.gd" type="Script" id=8]
+[ext_resource path="res://UI/Music.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -61,6 +62,8 @@ shape = SubResource( 2 )
 [node name="Camera2D" parent="." instance=ExtResource( 2 )]
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
+
+[node name="Music" parent="." instance=ExtResource( 9 )]
 [connection signal="area_entered" from="YSort/Hazard" to="." method="_on_Hazard_area_entered"]
 [connection signal="area_entered" from="YSort/Goal" to="." method="_on_Goal_area_entered"]
 [connection signal="area_exited" from="YSort/Goal" to="." method="_on_Goal_area_exited"]

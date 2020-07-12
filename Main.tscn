@@ -1,10 +1,30 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Tiles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/Farm_Theme.wav" type="AudioStream" id=3]
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Main.gd" type="Script" id=8]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=10]
+
+[sub_resource type="Animation" id=1]
+resource_name = "UIMusic"
+length = 51.3
+loop = true
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 8 )
@@ -43,6 +63,13 @@ position = Vector2( -113.036, -38.2363 )
 position = Vector2( 556.599, 464.47 )
 
 [node name="UI" parent="." instance=ExtResource( 10 )]
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music"]
+anims/UIMusic = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music"]
 [connection signal="exit_signal" from="UI" to="." method="_on_UI_exit_signal"]
 
 [editable path="Tiles"]

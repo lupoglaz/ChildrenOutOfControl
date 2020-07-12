@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://World/Farm_Theme_fast.wav" type="AudioStream" id=1]
+[ext_resource path="res://Levels/Music.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Music"
+length = 23.0
+loop = true
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="Music" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -2.391
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Music = SubResource( 3 )

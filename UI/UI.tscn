@@ -64,7 +64,7 @@ margin_top = 215.0
 margin_right = 395.0
 margin_bottom = 262.0
 custom_fonts/font = ExtResource( 2 )
-text = "SUCCESS"
+text = "GOOD DOGGO"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,7 +76,7 @@ margin_top = 215.0
 margin_right = 425.0
 margin_bottom = 262.0
 custom_fonts/font = ExtResource( 2 )
-text = "GAME OVER"
+text = "BAD DOGGO"
 __meta__ = {
 "_edit_use_anchors_": false
 }
