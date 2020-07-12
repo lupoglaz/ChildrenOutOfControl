@@ -1,13 +1,15 @@
 extends Node
 
 var current_stage = 1
-var max_levels = 1
+var max_levels = 2
 var timeout_time = 3.0
 
 func go_next_stage():
+	current_stage += 1
 	var level_path = "res://Levels/Level"+str(current_stage)+".tscn"
-	var file = File.new()
-	if file.file_exists(level_path):
+	print("Next stage ", current_stage)
+	if current_stage <= max_levels:
+		save_progress()
 		get_tree().change_scene(level_path)
 	else:
 		go_menu()
@@ -46,3 +48,4 @@ func load_progress():
 	var data = {}
 	data = parse_json(file.get_as_text())
 	current_stage = data["stage"]
+	

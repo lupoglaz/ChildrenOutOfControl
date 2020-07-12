@@ -2,7 +2,7 @@ extends Node2D
 
 onready var interface = $UI
 export var num_inside = 0
-export var total_num = 1
+export var total_num = 2
 
 func _ready():
 	interface.hideMenu()

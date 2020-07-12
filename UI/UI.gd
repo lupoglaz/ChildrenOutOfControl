@@ -25,7 +25,7 @@ func hideMenu():
 
 func _ready():
 	Global.load_progress()
-	print(Global.current_stage)
+	print("Current stage ", Global.current_stage)
 	if Global.current_stage >= Global.max_levels:
 		menu_start_button.text = "Restart"
 	elif Global.current_stage > 1:
@@ -42,12 +42,10 @@ func gameover():
 	animationPlayer.play("FadeOut")
 	
 func success():
-	Global.current_stage += 1
 	successLabel.visible = true
 	animationPlayer.play("FadeOut")
 	
 func fadeOutDone():
-	Global.save_progress()
 	if gameOver.visible:
 		Global.go_menu()
 	else:
@@ -56,14 +54,17 @@ func fadeOutDone():
 func _process(delta):
 	if clock.visible:
 		progress.value = 100*float(timer.time_left)/float(Global.timeout_time)
+		
+	if Input.is_action_just_pressed("ui_cancel"):
+		Global.go_menu()
 
 func _on_Exit_pressed():
 	Global.save_progress()
 	get_tree().quit()
 
 func _on_Start_pressed():
-	if Global.current_stage >= Global.max_levels:
-		Global.current_stage = 1
+	if Global.current_stage == Global.max_levels:
+		Global.current_stage = 0
 	Global.go_next_stage()
 
 func startClock():
