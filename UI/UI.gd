@@ -7,7 +7,12 @@ onready var colorRect = $ColorRect
 onready var menu = $Menu
 onready var menu_start_button = $Menu/MarginContainer/VBoxContainer/Start
 
+onready var clock = $Clock
+onready var timer = $Clock/Timer
+onready var progress = $Clock/VBoxContainer/ProgressBar
+
 signal exit_signal
+signal timeout_signal
 
 func showMenu():
 	gameOver.visible = false
@@ -16,6 +21,7 @@ func showMenu():
 
 func hideMenu():
 	menu.visible = false
+	clock.visible = false
 
 func _ready():
 	Global.load_progress()
@@ -46,6 +52,10 @@ func fadeOutDone():
 		Global.go_menu()
 	else:
 		Global.go_next_stage()
+		
+func _process(delta):
+	if clock.visible:
+		progress.value = 100*float(timer.time_left)/float(Global.timeout_time)
 
 func _on_Exit_pressed():
 	Global.save_progress()
@@ -55,3 +65,14 @@ func _on_Start_pressed():
 	if Global.current_stage >= Global.max_levels:
 		Global.current_stage = 1
 	Global.go_next_stage()
+
+func startClock():
+	clock.visible = true
+	timer.start(3.0)
+
+func stopClock():
+	timer.stop()
+	clock.visible = false
+
+func _on_Timer_timeout():
+	emit_signal("timeout_signal")

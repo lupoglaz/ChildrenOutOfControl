@@ -2,6 +2,7 @@ extends Node
 
 var current_stage = 1
 var max_levels = 1
+var timeout_time = 3.0
 
 func go_next_stage():
 	var level_path = "res://Levels/Level"+str(current_stage)+".tscn"
