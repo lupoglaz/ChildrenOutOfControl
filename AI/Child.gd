@@ -50,12 +50,20 @@ func _ready():
 	if child_type == ChildType.VIOLENT:
 		shout_box.shape.radius = 50
 		sprite = spriteViolent
+		$ShoutDetectionBox/CollisionShape2D.disabled = true
+		$ShoutBox/CollisionShape2D.disabled = false
+		
 	elif child_type == ChildType.NORMAL:
 		shout_box.shape.radius = 5
 		sprite = spriteNormal
+		$ShoutDetectionBox/CollisionShape2D.disabled = false
+		$ShoutBox/CollisionShape2D.disabled = true
+		
 	elif child_type == ChildType.CURIOUS:
 		shout_box.shape.radius = 5
 		sprite = spriteCurious
+		$ShoutDetectionBox/CollisionShape2D.disabled = false
+		$ShoutBox/CollisionShape2D.disabled = true
 	
 	sprite.visible = true
 
@@ -84,7 +92,8 @@ func _process(delta):
 			if child_type == ChildType.NORMAL:
 				animationState.travel("NormalIdle")
 			elif child_type == ChildType.VIOLENT:
-				animationState.travel("ViolentIdle")
+				animationState.travel("ViolentBreak")
+				shout_box.shape.radius = 50
 			elif child_type == ChildType.CURIOUS:
 				animationState.travel("CuriousIdle")
 				
@@ -166,3 +175,10 @@ func _on_ShoutBox_area_entered(area):
 		var flee_direction = (global_position - area.direction)
 		target_position = global_position + flee_direction.normalized() * 200
 		stateTimer.start(rand_range(1,3))
+
+
+func _on_ShoutDetectionBox_area_entered(area):
+	state = FRIGHTENED
+	var flee_direction = (global_position - area.global_position)
+	target_position = global_position + flee_direction.normalized() * 200
+	stateTimer.start(rand_range(1,3))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://AI/ViolentKid.png" type="Texture" id=1]
 [ext_resource path="res://AI/Child.gd" type="Script" id=2]
@@ -408,6 +408,9 @@ min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1.1, 1.1 )
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id=55]
+animation = "ViolentBreak"
+
 [sub_resource type="AnimationNodeAnimation" id=30]
 animation = "ViolentIdle"
 
@@ -440,13 +443,13 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=37]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=51]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
 
 [sub_resource type="AnimationNodeStateMachine" id=14]
 states/CuriousIdle/node = SubResource( 44 )
@@ -457,15 +460,19 @@ states/NormalIdle/node = SubResource( 21 )
 states/NormalIdle/position = Vector2( 162, 38 )
 states/NormalWalk/node = SubResource( 20 )
 states/NormalWalk/position = Vector2( 385, 38 )
+states/ViolentBreak/node = SubResource( 55 )
+states/ViolentBreak/position = Vector2( 573, 95.6279 )
 states/ViolentIdle/node = SubResource( 30 )
 states/ViolentIdle/position = Vector2( 162, 131 )
 states/ViolentWalk/node = SubResource( 35 )
 states/ViolentWalk/position = Vector2( 385, 131 )
-transitions = [ "NormalIdle", "NormalWalk", SubResource( 22 ), "NormalWalk", "NormalIdle", SubResource( 23 ), "ViolentIdle", "ViolentWalk", SubResource( 36 ), "ViolentWalk", "ViolentIdle", SubResource( 37 ), "CuriousIdle", "CuriousWalk", SubResource( 50 ), "CuriousWalk", "CuriousIdle", SubResource( 51 ) ]
+transitions = [ "NormalIdle", "NormalWalk", SubResource( 22 ), "NormalWalk", "NormalIdle", SubResource( 23 ), "CuriousIdle", "CuriousWalk", SubResource( 50 ), "CuriousWalk", "CuriousIdle", SubResource( 51 ), "ViolentBreak", "ViolentWalk", SubResource( 56 ), "ViolentWalk", "ViolentBreak", SubResource( 57 ) ]
 start_node = "NormalIdle"
 graph_offset = Vector2( -233, -18.3721 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+
+[sub_resource type="CircleShape2D" id=58]
 
 [node name="Child" type="KinematicBody2D"]
 collision_layer = 31
@@ -573,9 +580,17 @@ parameters/ViolentWalk/blend_position = Vector2( 0.124805, -0.293333 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pitch_scale = 1.23
+
+[node name="ShoutDetectionBox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShoutDetectionBox"]
+shape = SubResource( 58 )
 [connection signal="timeout" from="StateTimer" to="." method="_on_StateTimer_timeout"]
 [connection signal="body_entered" from="RandomStateBox" to="." method="_on_Area2D_body_entered"]
 [connection signal="area_entered" from="FrightenStateBox" to="." method="_on_FrightenStateBox_area_entered"]
 [connection signal="area_entered" from="HazardStateBox" to="." method="_on_HazardStateBox_area_entered"]
 [connection signal="area_entered" from="GoalStateBox" to="." method="_on_GoalStateBox_area_entered"]
 [connection signal="area_entered" from="ShoutBox" to="." method="_on_ShoutBox_area_entered"]
+[connection signal="area_entered" from="ShoutDetectionBox" to="." method="_on_ShoutDetectionBox_area_entered"]
