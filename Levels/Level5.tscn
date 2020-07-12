@@ -85,6 +85,12 @@ shape = SubResource( 3 )
 [node name="Camera2D" parent="." instance=ExtResource( 3 )]
 position = Vector2( 232.733, 299.637 )
 
+[node name="TopLeft" parent="Camera2D/Limits" index="0"]
+position = Vector2( -191.453, -91.7993 )
+
+[node name="BottomRight" parent="Camera2D/Limits" index="1"]
+position = Vector2( 891.336, 691.694 )
+
 [node name="UI" parent="." instance=ExtResource( 7 )]
 
 [node name="Music" parent="." instance=ExtResource( 4 )]
@@ -101,3 +107,5 @@ position = Vector2( 232.733, 299.637 )
 [editable path="YSort/Hazard2"]
 
 [editable path="YSort/Goal"]
+
+[editable path="Camera2D"]

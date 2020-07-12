@@ -73,6 +73,9 @@ remote_path = NodePath("../../../Camera2D")
 [node name="Camera2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( 226.069, 145.592 )
 
+[node name="TopLeft" parent="Camera2D/Limits" index="0"]
+position = Vector2( -200.512, -164.328 )
+
 [node name="UI" parent="." instance=ExtResource( 4 )]
 
 [node name="Music" parent="." instance=ExtResource( 9 )]
@@ -86,3 +89,5 @@ position = Vector2( 226.069, 145.592 )
 [editable path="YSort/Hazard"]
 
 [editable path="YSort/Goal"]
+
+[editable path="Camera2D"]
